@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.mvvm.dogs"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+/** I prefer  explicit versions if they present once and we have single module app, because  idea hints about updates */
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    compile 'androidx.recyclerview:recyclerview:1.1.0-beta01'
+    compile "com.google.android.material:material:1.1.0-alpha07"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+    /** RxJava2  */
+    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    /** List adapter */
+    implementation "android.arch.paging:runtime:1.0.1"
+    /** AAC */
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-alpha02'
+    /** Dagger2 */
+    implementation "com.google.dagger:dagger:$dagger2"
+    kapt "com.google.dagger:dagger-compiler:$dagger2"
+    /** Network */
+    implementation "com.squareup.retrofit2:converter-moshi:2.5.0"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    implementation "org.jetbrains.anko:anko-commons:0.10.5"
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.github.AleksPlekhov:TestModule:1.17'
+
+}
